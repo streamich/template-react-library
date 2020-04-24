@@ -1,6 +1,6 @@
 # template-react-library
 
-New project...
+Template for TypeScript React NPM libraries.
 
 
 

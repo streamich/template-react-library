@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const App: React.SFC<{}> = () => {
+const Test: React.FC = () => {
   return (
     <div>
       Hello world!
@@ -8,4 +8,4 @@ const App: React.SFC<{}> = () => {
   );
 };
 
-export default App;
+export default Test;
