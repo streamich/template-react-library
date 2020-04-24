@@ -1,0 +1,81 @@
+{
+  "name": "template-react-library",
+  "version": "0.0.1",
+  "description": "",
+  "author": {
+    "name": "streamich",
+    "url": "https://github.com/streamich"
+  },
+  "homepage": "https://github.com/streamich/template-react-library",
+  "repository": "streamich/template-react-library",
+  "license": "Unlicense",
+  "engines": {
+    "node": ">=6.9"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "prettier": "prettier --ignore-path .gitignore --write 'src/**/*.{ts,tsx,js,jsx}'",
+    "prettier:diff": "prettier -l 'src/**/*.{ts,tsx,js,jsx}'",
+    "prepush": "yarn prettier:diff",
+    "precommit": "pretty-quick --staged && yarn tslint",
+    "tslint": "tslint 'src/**/*.{js,jsx,ts,tsx}' -t verbose",
+    "commitmsg": "commitlint -E GIT_PARAMS",
+    "test": "jest --no-cache --config='jest.config.js'",
+    "release": "semantic-release",
+    "clean": "rimraf public/dist",
+    "build": "webpack -p --config targets/browser/webpack.config.js",
+    "start": "webpack-dev-server --color --config targets/browser/webpack.config.js"
+  },
+  "keywords": [],
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/npm": "^7.0.5",
+    "@types/jest": "^25.2.1",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "husky": "^4.2.5",
+    "jest": "^25.4.0",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^17.0.7",
+    "ts-loader": "^7.0.1",
+    "ts-node": "^8.9.0",
+    "tslint": "^6.1.1",
+    "tslint-config-common": "^1.6.0",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^3.7.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
+    "webpack-manifest-plugin": "^2.2.0",
+    "webpack-pwa-manifest": "^4.2.0"
+  },
+  "release": {
+    "verifyConditions": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  }
+}
