@@ -9,21 +9,25 @@
   "homepage": "https://github.com/streamich/template-react-library",
   "repository": "streamich/template-react-library",
   "license": "Unlicense",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "typings": "lib/index.d.ts",
+  "sideEffects": false,
   "files": [
-    "index.js"
+    "lib/"
   ],
   "scripts": {
+    "clean": "rimraf public/dist",
+    "build": "tsc",
+    "test": "jest --no-cache --config='jest.config.js'",
+    "start": "yarn storybook",
     "prettier": "prettier --ignore-path .gitignore --write 'src/**/*.{ts,tsx,js,jsx}'",
     "prettier:diff": "prettier -l 'src/**/*.{ts,tsx,js,jsx}'",
     "prepush": "yarn prettier:diff",
     "precommit": "pretty-quick --staged && yarn tslint",
     "tslint": "tslint 'src/**/*.{js,jsx,ts,tsx}' -t verbose",
     "commitmsg": "commitlint -E GIT_PARAMS",
-    "test": "jest --no-cache --config='jest.config.js'",
     "release": "semantic-release",
-    "clean": "rimraf public/dist",
-    "start": "yarn storybook",
     "storybook": "start-storybook -p 6010",
     "storybook:build": "build-storybook",
     "storybook:clean": "rimraf storybook-static"
@@ -74,6 +78,12 @@
   "config": {
     "commitizen": {
       "path": "git-cz"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn tslint",
+      "pre-push": "yarn tslint && yarn clean && yarn build && yarn test"
     }
   }
 }
